@@ -59,19 +59,16 @@ public class CardsAdapter extends RecyclerView.Adapter<CardsAdapter.MyViewHolder
         holder.name.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Toast.makeText(mContext,holder.name.getText(),Toast.LENGTH_SHORT).show();
             }
         });
         holder.rno.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Toast.makeText(mContext,holder.rno.getText(),Toast.LENGTH_SHORT).show();
             }
         });
         holder.img.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Toast.makeText(mContext,holder.img.getMaxHeight  (),Toast.LENGTH_SHORT).show();
             }
         });
     }
