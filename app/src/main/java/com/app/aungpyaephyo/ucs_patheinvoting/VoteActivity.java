@@ -1,5 +1,7 @@
 package com.app.aungpyaephyo.ucs_patheinvoting;
 
+import android.content.DialogInterface;
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.AdapterView;
@@ -16,6 +18,7 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
+import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 
 
@@ -27,48 +30,29 @@ public class VoteActivity extends AppCompatActivity implements AdapterView.OnIte
     ImageView imageView;
     String type="";
     String select="";
-    String b1="1";
-    String b2="2";
-    String b3="3";
-    String b4="4";
-    String b5="5";
-    String b6="6";
-    String b7="7";
-    String b8="8";
-    String b9="9";
-    String b10="10";
-    String g1="1";
-    String g2="2";
-    String g3="3";
-    String g4="4";
-    String g5="5";
-    String g6="6";
-    String g7="7";
-    String g8="8";
-    String g9="9";
-    String g10="10";
-    String bp1="https://cdn3.iconfinder.com/data/icons/google-material-design-icons/48/ic_filter_1_48px-256.png";
-    String bp2="https://cdn3.iconfinder.com/data/icons/google-material-design-icons/48/ic_filter_2_48px-512.png";
-    String bp3="https://cdn3.iconfinder.com/data/icons/google-material-design-icons/48/ic_filter_3_48px-256.png";
-    String bp4="https://cdn3.iconfinder.com/data/icons/letters-and-numbers-1/32/number_4_green-256.png";
-    String bp5="https://cdn0.iconfinder.com/data/icons/social-flat-rounded-rects/512/html5-256.png";
-    String bp6="https://cdn3.iconfinder.com/data/icons/letters-and-numbers-1/32/number_6_blue-256.png";
-    String bp7="https://cdn3.iconfinder.com/data/icons/letters-and-numbers-1/32/number_7_blue-256.png";
-    String bp8="https://cdn3.iconfinder.com/data/icons/letters-and-numbers-1/32/number_8_blue-256.png";
-    String bp9="https://cdn3.iconfinder.com/data/icons/letters-and-numbers-1/32/number_9_blue-256.png";
-    String bp10="https://cdn1.iconfinder.com/data/icons/social-media-glossy/512/78-microsoft_social-256.png";
-    String gp1="https://cdn3.iconfinder.com/data/icons/google-material-design-icons/48/ic_filter_1_48px-256.png";
-    String gp2="https://cdn3.iconfinder.com/data/icons/google-material-design-icons/48/ic_filter_2_48px-512.png";
-    String gp3="https://cdn3.iconfinder.com/data/icons/google-material-design-icons/48/ic_filter_3_48px-256.png";
-    String gp4="https://cdn3.iconfinder.com/data/icons/letters-and-numbers-1/32/number_4_green-256.png";
-    String gp5="https://cdn0.iconfinder.com/data/icons/social-flat-rounded-rects/512/html5-256.png";
-    String gp6="https://cdn3.iconfinder.com/data/icons/letters-and-numbers-1/32/number_6_blue-256.png";
-    String gp7="https://cdn3.iconfinder.com/data/icons/letters-and-numbers-1/32/number_7_blue-256.png";
-    String gp8="https://cdn3.iconfinder.com/data/icons/letters-and-numbers-1/32/number_8_blue-256.png";
-    String gp9="https://cdn3.iconfinder.com/data/icons/letters-and-numbers-1/32/number_9_blue-256.png";
-    String gp10="https://cdn1.iconfinder.com/data/icons/social-media-glossy/512/78-microsoft_social-256.png";
-    String[] boys={b1,b2,b3,b4,b5,b6,b7,b8,b9,b10};
-    String[] girls={g1,g2,g3,g4,g5,g6,g7,g8,g9,g10};
+    String b1=Global.b1.name;
+    String b2=Global.b2.name;
+    String b3=Global.b3.name;
+    String b4=Global.b4.name;
+    String b5=Global.b5.name;
+    String b6=Global.b6.name;
+    String b7=Global.b7.name;
+    String b8=Global.b8.name;
+    String b9=Global.b9.name;
+    String b10=Global.b10.name;
+    String b11=Global.b11.name;
+    String g1=Global.g1.name;
+    String g11=Global.g11.name;
+    String g3=Global.g3.name;
+    String g4=Global.g4.name;
+    String g5=Global.g5.name;
+    String g6=Global.g6.name;
+    String g7=Global.g7.name;
+    String g8=Global.g8.name;
+    String g9=Global.g9.name;
+    String g10=Global.g10.name;
+    String[] boys={b1,b2,b3,b4,b5,b6,b7,b8,b9,b10,b11};
+    String[] girls={g1,g3,g4,g5,g6,g7,g8,g9,g10,g11};
     String[] current_title ={"King","Style Boy","Innocent Boy","Queen","Style Girl","Innocent Girl"};
     String ct=current_title[0];
     String current_gender="male";
@@ -99,64 +83,67 @@ public class VoteActivity extends AppCompatActivity implements AdapterView.OnIte
     public void onItemSelected(AdapterView<?> parent, View view, int pos, long id) {
 
         if(parent.getItemAtPosition(pos).equals(b1)){
-            Glide.with(this).load(bp1).fitCenter().into(imageView);
+            Glide.with(this).load(R.drawable.b1_2).fitCenter().into(imageView);
         }
         else if(parent.getItemAtPosition(pos).equals(b2)){
-            Glide.with(this).load(bp2).fitCenter().into(imageView);
+            Glide.with(this).load(R.drawable.b2_2).fitCenter().into(imageView);
         }
         else if(parent.getItemAtPosition(pos).equals(b3)){
-            Glide.with(this).load(bp3).fitCenter().into(imageView);
+            Glide.with(this).load(R.drawable.b3_2).fitCenter().into(imageView);
         }
         else if(parent.getItemAtPosition(pos).equals(b4)){
-            Glide.with(this).load(bp4).fitCenter().into(imageView);
+            Glide.with(this).load(R.drawable.b4_2).fitCenter().into(imageView);
         }
         else if(parent.getItemAtPosition(pos).equals(b5)){
-            Glide.with(this).load(bp5).fitCenter().into(imageView);
+            Glide.with(this).load(R.drawable.b5_2).fitCenter().into(imageView);
         }
         else if(parent.getItemAtPosition(pos).equals(b6)){
-            Glide.with(this).load(bp6).fitCenter().into(imageView);
+            Glide.with(this).load(R.drawable.b6_2).fitCenter().into(imageView);
         }
         else if(parent.getItemAtPosition(pos).equals(b7)){
-            Glide.with(this).load(bp7).fitCenter().into(imageView);
+            Glide.with(this).load(R.drawable.b7_2).fitCenter().into(imageView);
         }
         else if(parent.getItemAtPosition(pos).equals(b8)){
-            Glide.with(this).load(bp8).fitCenter().into(imageView);
+            Glide.with(this).load(R.drawable.b8_2).fitCenter().into(imageView);
         }
         else if(parent.getItemAtPosition(pos).equals(b9)){
-            Glide.with(this).load(bp9).fitCenter().into(imageView);
+            Glide.with(this).load(R.drawable.b9_2).fitCenter().into(imageView);
         }
         else if(parent.getItemAtPosition(pos).equals(b10)){
-            Glide.with(this).load(bp10).fitCenter().into(imageView);
+            Glide.with(this).load(R.drawable.b10_2).fitCenter().into(imageView);
+        }
+        else if(parent.getItemAtPosition(pos).equals(b11)){
+            Glide.with(this).load(R.drawable.b11_2).fitCenter().into(imageView);
         }
         else if(parent.getItemAtPosition(pos).equals(g1)){
-            Glide.with(this).load(gp1).fitCenter().into(imageView);
+            Glide.with(this).load(R.drawable.g1_2).fitCenter().into(imageView);
         }
-        else if(parent.getItemAtPosition(pos).equals(g2)){
-            Glide.with(this).load(gp2).fitCenter().into(imageView);
+        else if(parent.getItemAtPosition(pos).equals(g11)){
+            Glide.with(this).load(R.drawable.g11_2).fitCenter().into(imageView);
         }
         else if(parent.getItemAtPosition(pos).equals(g3)){
-            Glide.with(this).load(gp3).fitCenter().into(imageView);
+            Glide.with(this).load(R.drawable.g3_2).fitCenter().into(imageView);
         }
         else if(parent.getItemAtPosition(pos).equals(g4)){
-            Glide.with(this).load(gp4).fitCenter().into(imageView);
+            Glide.with(this).load(R.drawable.g4_2).fitCenter().into(imageView);
         }
         else if(parent.getItemAtPosition(pos).equals(g5)){
-            Glide.with(this).load(gp5).fitCenter().into(imageView);
+            Glide.with(this).load(R.drawable.g5_2).fitCenter().into(imageView);
         }
         else if(parent.getItemAtPosition(pos).equals(g6)){
-            Glide.with(this).load(gp6).fitCenter().into(imageView);
+            Glide.with(this).load(R.drawable.g6_2).fitCenter().into(imageView);
         }
         else if(parent.getItemAtPosition(pos).equals(g7)){
-            Glide.with(this).load(gp7).fitCenter().into(imageView);
+            Glide.with(this).load(R.drawable.g7_2).fitCenter().into(imageView);
         }
         else if(parent.getItemAtPosition(pos).equals(g8)){
-            Glide.with(this).load(gp8).fitCenter().into(imageView);
+            Glide.with(this).load(R.drawable.g8_2).fitCenter().into(imageView);
         }
         else if(parent.getItemAtPosition(pos).equals(g9)){
-            Glide.with(this).load(gp9).fitCenter().into(imageView);
+            Glide.with(this).load(R.drawable.g9_2).fitCenter().into(imageView);
         }
         else if(parent.getItemAtPosition(pos).equals(g10)){
-            Glide.with(this).load(gp10).fitCenter().into(imageView);
+            Glide.with(this).load(R.drawable.g10_2).fitCenter().into(imageView);
         }
 
 
@@ -178,41 +165,62 @@ public class VoteActivity extends AppCompatActivity implements AdapterView.OnIte
             vote.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
-                    if(ct.equals("Innocent Girl")){
-                        Glide.with(VoteActivity.this).load(R.drawable.splah_welcome).fitCenter().into(imageView);
-                        String str = spinner.getSelectedItem().toString();
-                        result[index] = ct + "," + str;
-                        Toast.makeText(VoteActivity.this,result[0]+"\n"+result[1]+"\n"+result[2]+"\n"+result[3]+"\n"+result[4]+"\n"+result[5],Toast.LENGTH_SHORT).show();
+                    if(spinner.getSelectedItemPosition()==0){
+                        Toast.makeText(VoteActivity.this,"Please select someone",Toast.LENGTH_SHORT).show();
                     }
                     else {
-                        Glide.with(VoteActivity.this).load(R.drawable.splah_welcome).fitCenter().into(imageView);
-                        String str = spinner.getSelectedItem().toString();
-                        result[index] = ct + "," + str;
-
-                        Toast.makeText(VoteActivity.this,
-                                result[index],
-                                Toast.LENGTH_SHORT).show();
-
-                        if (current_gender.equals("male")) {
-                            for (int i = 0; i < boys.length; i++) {
-                                if (boys[i].equals(str)) {
-                                    boys[i] = "";
-                                }
-                            }
+                        if (ct.equals("Innocent Girl")) {
+                            Glide.with(VoteActivity.this).load(R.drawable.splah_welcome).fitCenter().into(imageView);
+                            String str = spinner.getSelectedItem().toString();
+                            result[index] = ct + "," + str;
+                            new AlertDialog.Builder(VoteActivity.this)
+                                    .setMessage(result[0]+"\n"+result[1]+"\n"+result[2]+"\n"+result[3]+"\n"+result[4]+"\n"+result[5])
+                                    .setCancelable(false)
+                                    .setPositiveButton("Yes", new DialogInterface.OnClickListener() {
+                                        @Override
+                                        public void onClick(DialogInterface dialog, int which) {
+                                            //firebase
+                                            Toast.makeText(VoteActivity.this, "Voting Successful", Toast.LENGTH_SHORT).show();
+                                            finish();
+                                        }
+                                    })
+                                    .setNegativeButton("Edit", new DialogInterface.OnClickListener() {
+                                        @Override
+                                        public void onClick(DialogInterface dialog, int which) {
+                                            finish();
+                                            startActivity(new Intent(VoteActivity.this, VoteActivity.class));
+                                        }
+                                    }).show();
                         } else {
-                            for (int i = 0; i < girls.length; i++) {
-                                if (girls[i].equals(str)) {
-                                    girls[i] = "";
+                            Glide.with(VoteActivity.this).load(R.drawable.splah_welcome).fitCenter().into(imageView);
+                            String str = spinner.getSelectedItem().toString();
+                            result[index] = ct + "," + str;
+
+                            Toast.makeText(VoteActivity.this,
+                                    result[index],
+                                    Toast.LENGTH_SHORT).show();
+
+                            if (current_gender.equals("male")) {
+                                for (int i = 0; i < boys.length; i++) {
+                                    if (boys[i].equals(str)) {
+                                        boys[i] = "";
+                                    }
+                                }
+                            } else {
+                                for (int i = 0; i < girls.length; i++) {
+                                    if (girls[i].equals(str)) {
+                                        girls[i] = "";
+                                    }
                                 }
                             }
-                        }
 
-                        index++;
-                        ct = current_title[index];
-                        if (ct.equals("Queen"))
-                            current_gender = "female";
-                        title.setText("Who is your " + ct);
-                        addItemsOnSpinner();
+                            index++;
+                            ct = current_title[index];
+                            if (ct.equals("Queen"))
+                                current_gender = "female";
+                            title.setText("Who is your " + ct);
+                            addItemsOnSpinner();
+                        }
                     }
 
                 }

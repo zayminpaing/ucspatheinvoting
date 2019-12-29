@@ -16,10 +16,12 @@
 <RelativeLayout
     android:layout_weight="1"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-
-        android:background="@drawable/cu_icon">
-
+        android:layout_height="match_parent">
+    <ImageView
+        android:src="@drawable/cu_icon"
+        android:alpha="0."
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"/>
     <ProgressBar
         android:id="@+id/qr_loading"
         android:visibility="gone"

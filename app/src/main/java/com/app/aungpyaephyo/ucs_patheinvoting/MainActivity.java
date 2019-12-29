@@ -124,7 +124,6 @@ public class MainActivity extends AppCompatActivity {
                     Intent intent = new Intent(this, RecyclerViewActivity.class);
                     intent.putExtra("data","boys");
                     startActivity(intent);
-                    finish();
             }
             break;
             case R.id.girls:
@@ -153,10 +152,7 @@ public class MainActivity extends AppCompatActivity {
                 public void onComplete(@NonNull Task<AuthResult> task) {
                     if(task.isSuccessful()){
                          //login successful
-                        finish();
                         Intent i=new Intent(MainActivity.this,VoteActivity.class);
-                        i.putExtra("type","king");
-                        i.putExtra("select","null");
                         startActivity(i);
                         dialog.dismiss();
                     }
