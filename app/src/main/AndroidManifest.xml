@@ -17,7 +17,7 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".RecyclerViewActivity" android:screenOrientation="portrait"/>
+        <activity android:name=".RecyclerViewActivity" android:screenOrientation="portrait" android:parentActivityName=".MainActivity"/>
         <activity android:name=".VoteActivity"
             android:theme="@style/AppTheme.NoActionBar" android:screenOrientation="portrait"/>
         <activity android:name=".MainActivity" android:screenOrientation="portrait"/>

@@ -1,5 +1,5 @@
 <resources>
-    <string name="app_name" translatable="false">UCS_PatheinVoting</string>
+    <string name="app_name" translatable="false">KQ Voting (UCSP)</string>
     <string name="button" translatable="false">Button</string>
     <string name="king" translatable="false">Who is your King?</string>
     <string name="vote" translatable="false">Next</string>

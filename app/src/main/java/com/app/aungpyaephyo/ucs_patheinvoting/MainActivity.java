@@ -1,11 +1,16 @@
 package com.app.aungpyaephyo.ucs_patheinvoting;
 
 import android.app.ProgressDialog;
+import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
+import android.net.ConnectivityManager;
+import android.net.NetworkInfo;
 import android.os.Bundle;
 import android.os.Handler;
 import android.view.View;
+import android.view.Window;
+import android.view.WindowManager;
 import android.widget.Button;
 import android.widget.ProgressBar;
 import android.widget.Toast;
@@ -38,6 +43,9 @@ public class MainActivity extends AppCompatActivity {
         @Override
     protected void onCreate(Bundle savedInstanceState) {
 
+            requestWindowFeature(Window.FEATURE_NO_TITLE);
+            getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN,
+                    WindowManager.LayoutParams.FLAG_FULLSCREEN);
         boys=findViewById(R.id.boys);
         girls=findViewById(R.id.girls);
         login=findViewById(R.id.login);
@@ -113,7 +121,14 @@ public class MainActivity extends AppCompatActivity {
         //initiating the qr code scan
         switch (view.getId()) {
             case R.id.login:{
-                qrScan.initiateScan();
+                ConnectivityManager connectivityManager = (ConnectivityManager)getSystemService(Context.CONNECTIVITY_SERVICE);
+                if(connectivityManager.getNetworkInfo(ConnectivityManager.TYPE_MOBILE).getState() == NetworkInfo.State.CONNECTED ||
+                        connectivityManager.getNetworkInfo(ConnectivityManager.TYPE_WIFI).getState() == NetworkInfo.State.CONNECTED) {
+                    //we are connected to a network
+                    qrScan.initiateScan();
+                }
+                else
+                    Toast.makeText(MainActivity.this,"Please turn on the Internet",Toast.LENGTH_SHORT).show();
 
             }
 
@@ -153,6 +168,7 @@ public class MainActivity extends AppCompatActivity {
                     if(task.isSuccessful()){
                          //login successful
                         Intent i=new Intent(MainActivity.this,VoteActivity.class);
+                        finish();
                         startActivity(i);
                         dialog.dismiss();
                     }

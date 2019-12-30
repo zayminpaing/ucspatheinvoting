@@ -10,6 +10,8 @@ import android.graphics.Rect;
 import android.os.Bundle;
 import android.util.TypedValue;
 import android.view.View;
+import android.view.Window;
+import android.view.WindowManager;
 import android.widget.Toast;
 
 import java.util.ArrayList;
@@ -22,6 +24,9 @@ public class RecyclerViewActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        requestWindowFeature(Window.FEATURE_NO_TITLE);
+        getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN,
+                WindowManager.LayoutParams.FLAG_FULLSCREEN);
         setContentView(R.layout.activity_recycler_view);
         recyclerView =  findViewById(R.id.recycler_view);
 
@@ -38,9 +43,11 @@ public class RecyclerViewActivity extends AppCompatActivity {
         if(selection!=null){
             String selected=selection.getString("data");
             if(selected.equals("boys")){
+                setTitle("UCSP King Selections");
                 prepareAlbumsBoys();
             }
             else {
+                setTitle("UCSP Queen Selections");
                 prepareAlbumsGirls();
             }
 

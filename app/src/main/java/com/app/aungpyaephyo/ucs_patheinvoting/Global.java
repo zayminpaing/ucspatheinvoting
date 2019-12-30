@@ -8,7 +8,7 @@ public class Global {
     public static Student b5=new Student("Min Khant","Sec-A", R.drawable.b5_1);
     public static Student b6=new Student("Wai Yan Min Htet","Sec-A", R.drawable.b6_1);
     public static Student b7=new Student("Kaung Myat Kyaw","Sec-B", R.drawable.b7_1);
-    public static Student b8=new Student("Hein Htet KKyaw Zin","Sec-B", R.drawable.b8_1);
+    public static Student b8=new Student("Hein Htet Kyaw Zin","Sec-B", R.drawable.b8_1);
     public static Student b9=new Student("Min Khant Ko","Sec-B", R.drawable.b9_1);
     public static Student b10=new Student("Kaung Sithu Tun","Sec-B", R.drawable.b10_1);
     public static Student b11=new Student("Kyaw Thet Hmue","Sec-A", R.drawable.b11_1);

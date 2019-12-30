@@ -1,9 +1,12 @@
 package com.app.aungpyaephyo.ucs_patheinvoting;
 
+import android.app.ProgressDialog;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
+import android.view.Window;
+import android.view.WindowManager;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
@@ -13,11 +16,17 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.bumptech.glide.Glide;
+import com.google.android.gms.tasks.OnCompleteListener;
+import com.google.android.gms.tasks.Task;
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.database.FirebaseDatabase;
 
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
+import java.util.StringTokenizer;
 
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 
@@ -61,6 +70,9 @@ public class VoteActivity extends AppCompatActivity implements AdapterView.OnIte
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        requestWindowFeature(Window.FEATURE_NO_TITLE);
+        getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN,
+                WindowManager.LayoutParams.FLAG_FULLSCREEN);
         setContentView(R.layout.activity_vote);
 
         imageView = findViewById(R.id.image);
@@ -173,6 +185,7 @@ public class VoteActivity extends AppCompatActivity implements AdapterView.OnIte
                             Glide.with(VoteActivity.this).load(R.drawable.splah_welcome).fitCenter().into(imageView);
                             String str = spinner.getSelectedItem().toString();
                             result[index] = ct + "," + str;
+                            final String r=result[0]+":"+result[1]+":"+result[2]+":"+result[3]+":"+result[4]+":"+result[5];
                             new AlertDialog.Builder(VoteActivity.this)
                                     .setMessage(result[0]+"\n"+result[1]+"\n"+result[2]+"\n"+result[3]+"\n"+result[4]+"\n"+result[5])
                                     .setCancelable(false)
@@ -180,8 +193,27 @@ public class VoteActivity extends AppCompatActivity implements AdapterView.OnIte
                                         @Override
                                         public void onClick(DialogInterface dialog, int which) {
                                             //firebase
-                                            Toast.makeText(VoteActivity.this, "Voting Successful", Toast.LENGTH_SHORT).show();
-                                            finish();
+                                            final ProgressDialog d = ProgressDialog.show(VoteActivity.this, "",
+                                                    "Loading. Please wait...", true);
+                                            FirebaseDatabase.getInstance().getReference().child(FirebaseAuth.getInstance().getCurrentUser().getEmail()).setValue(r)
+                                            .addOnCompleteListener(new OnCompleteListener<Void>() {
+                                                @Override
+                                                public void onComplete(@NonNull Task<Void> task) {
+                                                    if(task.isSuccessful()){
+                                                        d.dismiss();
+                                                        Toast.makeText(VoteActivity.this, "Voting Successful", Toast.LENGTH_SHORT).show();
+                                                        FirebaseAuth.getInstance().signOut();
+                                                        finish();
+                                                        startActivity(new Intent(VoteActivity.this, MainActivity.class));
+                                                    }
+                                                    else{
+                                                        d.dismiss();
+                                                        Toast.makeText(VoteActivity.this, "Voting Error\nPlease try again", Toast.LENGTH_LONG).show();
+                                                        finish();
+                                                        startActivity(new Intent(VoteActivity.this, VoteActivity.class));
+                                                    }
+                                                }
+                                            });
                                         }
                                     })
                                     .setNegativeButton("Edit", new DialogInterface.OnClickListener() {
