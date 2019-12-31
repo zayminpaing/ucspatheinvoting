@@ -206,12 +206,15 @@ public class VoteActivity extends AppCompatActivity implements AdapterView.OnIte
                                                 @Override
                                                 public void onComplete(@NonNull Task<Void> task) {
                                                     if(task.isSuccessful()){
-                                                        d.dismiss();
                                                         Toast.makeText(VoteActivity.this, "Voting Successful", Toast.LENGTH_SHORT).show();
-                                                        FirebaseAuth.getInstance().getCurrentUser().delete();
-                                                        FirebaseAuth.getInstance().signOut();
-                                                        finish();
-                                                        startActivity(new Intent(VoteActivity.this, MainActivity.class));
+                                                        FirebaseAuth.getInstance().getCurrentUser().delete().addOnCompleteListener(new OnCompleteListener<Void>() {
+                                                            @Override
+                                                            public void onComplete(@NonNull Task<Void> task) {
+                                                                d.dismiss();
+                                                                finish();
+                                                                startActivity(new Intent(VoteActivity.this, MainActivity.class));
+                                                            }
+                                                        });
                                                     }
                                                     else{
                                                         d.dismiss();
