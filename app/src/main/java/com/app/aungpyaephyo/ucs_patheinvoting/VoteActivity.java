@@ -19,6 +19,7 @@ import com.bumptech.glide.Glide;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 
 import java.util.ArrayList;
@@ -35,6 +36,8 @@ public class VoteActivity extends AppCompatActivity implements AdapterView.OnIte
 
     private Spinner spinner;
     private Button vote;
+    FirebaseDatabase firebaseDatabase;
+    DatabaseReference databaseReference;
     TextView title;
     ImageView imageView;
     String type="";
@@ -74,6 +77,8 @@ public class VoteActivity extends AppCompatActivity implements AdapterView.OnIte
         getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN,
                 WindowManager.LayoutParams.FLAG_FULLSCREEN);
         setContentView(R.layout.activity_vote);
+        firebaseDatabase=FirebaseDatabase.getInstance();
+
 
         imageView = findViewById(R.id.image);
 
@@ -195,13 +200,15 @@ public class VoteActivity extends AppCompatActivity implements AdapterView.OnIte
                                             //firebase
                                             final ProgressDialog d = ProgressDialog.show(VoteActivity.this, "",
                                                     "Loading. Please wait...", true);
-                                            FirebaseDatabase.getInstance().getReference().child(FirebaseAuth.getInstance().getCurrentUser().getEmail()).setValue(r)
+                                            databaseReference=firebaseDatabase.getReference();
+                                            databaseReference.child(FirebaseAuth.getInstance().getCurrentUser().getEmail().replace("@gmail.com","")).setValue(r)
                                             .addOnCompleteListener(new OnCompleteListener<Void>() {
                                                 @Override
                                                 public void onComplete(@NonNull Task<Void> task) {
                                                     if(task.isSuccessful()){
                                                         d.dismiss();
                                                         Toast.makeText(VoteActivity.this, "Voting Successful", Toast.LENGTH_SHORT).show();
+                                                        FirebaseAuth.getInstance().getCurrentUser().delete();
                                                         FirebaseAuth.getInstance().signOut();
                                                         finish();
                                                         startActivity(new Intent(VoteActivity.this, MainActivity.class));

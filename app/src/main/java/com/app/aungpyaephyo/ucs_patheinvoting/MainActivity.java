@@ -174,7 +174,7 @@ public class MainActivity extends AppCompatActivity {
                     }
                     else{
                         dialog.dismiss();
-                        Toast.makeText(MainActivity.this,task.getException().toString(),Toast.LENGTH_SHORT).show();
+                        Toast.makeText(MainActivity.this,"You have wrong QR\nor you have voted already",Toast.LENGTH_LONG).show();
                     }
                 }
             });
